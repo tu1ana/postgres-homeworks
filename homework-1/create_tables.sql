@@ -9,6 +9,8 @@ CREATE TABLE employees
 	notes text NOT NULL
 );
 
+SELECT * FROM employees;
+SELECT * FROM customers;
 SELECT * FROM orders;
 
 CREATE TABLE customers
@@ -21,8 +23,8 @@ CREATE TABLE customers
 CREATE TABLE orders
 (
 	order_id int PRIMARY KEY,
-	customer_id varchar(5) UNIQUE REFERENCES customers(customer_id),
-	employee_id int UNIQUE REFERENCES employees(employee_id),
+	customer_id varchar(5) REFERENCES customers(customer_id),
+	employee_id int REFERENCES employees(employee_id),
 	order_date varchar(10) NOT NULL,
 	ship_city varchar(101) NOT NULL
 )
