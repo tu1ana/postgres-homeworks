@@ -5,7 +5,7 @@ SELECT customers.company_name AS customer, CONCAT(employees.first_name, ' ', emp
 INNER JOIN orders USING(customer_id)
 INNER JOIN employees USING(employee_id)
 INNER JOIN shippers ON shippers.shipper_id=orders.ship_via
-WHERE customers.city='London' AND employees.city='London' AND shippers.company_name='United Package'
+WHERE customers.city='London' AND employees.city='London' AND shippers.company_name='United Package';
 
 -- 2. Наименование продукта, количество товара (product_name и units_in_stock в табл products),
 -- имя поставщика и его телефон (contact_name и phone в табл suppliers) для таких продуктов,
@@ -16,12 +16,12 @@ FROM products
 INNER JOIN suppliers USING(supplier_id)
 INNER JOIN categories USING(category_id)
 WHERE products.discontinued <> 1 AND categories.category_name IN ('Dairy Products', 'Condiments') AND products.units_in_stock < 25
-ORDER BY products.units_in_stock
+ORDER BY products.units_in_stock;
 
 -- 3. Список компаний заказчиков (company_name из табл customers), не сделавших ни одного заказа
 SELECT company_name FROM customers
 LEFT JOIN orders USING(customer_id)
-WHERE orders.customer_id IS NULL
+WHERE orders.customer_id IS NULL;
 
 -- 4. уникальные названия продуктов, которых заказано ровно 10 единиц (количество заказанных единиц см в колонке quantity табл order_details)
 -- Этот запрос написать именно с использованием подзапроса.
